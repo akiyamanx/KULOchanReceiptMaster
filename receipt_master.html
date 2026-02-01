@@ -1137,6 +1137,7 @@
       
       showLoading(`AI解析中... (0/${pendingPhotos.length})`);
       let successCount = 0;
+      let lastError = '';
       
       for (let i = 0; i < pendingPhotos.length; i++) {
         updateLoadingText(`AI解析中... (${i + 1}/${pendingPhotos.length})`);
@@ -1150,7 +1151,10 @@
             receipts.push(result);
             successCount++;
           }
-        } catch (err) { console.error('解析エラー:', err); }
+        } catch (err) { 
+          console.error('解析エラー:', err);
+          lastError = err.message || '不明なエラー';
+        }
       }
       
       pendingPhotos = [];
@@ -1158,7 +1162,14 @@
       saveData();
       renderReceipts();
       hideLoading();
-      showToast(`${successCount}件のレシートを追加しました`);
+      
+      if (successCount > 0) {
+        showToast(`${successCount}件のレシートを追加しました`);
+      } else if (lastError) {
+        showToast(`エラー: ${lastError}`);
+      } else {
+        showToast('解析できませんでした');
+      }
     }
 
     async function analyzeReceipt(base64Image) {
@@ -1174,21 +1185,42 @@
 }
 読み取れない項目はnullとしてください。`;
 
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }, { inline_data: { mime_type: 'image/jpeg', data: imageData } }] }],
-          generationConfig: { temperature: 0.1, maxOutputTokens: 2048 }
-        })
-      });
+      let response;
+      try {
+        response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: prompt }, { inline_data: { mime_type: 'image/jpeg', data: imageData } }] }],
+            generationConfig: { temperature: 0.1, maxOutputTokens: 2048 }
+          })
+        });
+      } catch (fetchErr) {
+        throw new Error('通信エラー: ' + fetchErr.message);
+      }
 
       const data = await response.json();
-      if (data.candidates?.[0]?.content?.parts?.[0]?.text) {
-        const jsonMatch = data.candidates[0].content.parts[0].text.match(/\{[\s\S]*\}/);
-        if (jsonMatch) return JSON.parse(jsonMatch[0]);
+      
+      // APIエラーチェック
+      if (data.error) {
+        throw new Error('API: ' + (data.error.message || data.error.status || 'エラー'));
       }
-      throw new Error('解析失敗');
+      
+      if (data.candidates?.[0]?.content?.parts?.[0]?.text) {
+        const text = data.candidates[0].content.parts[0].text;
+        const jsonMatch = text.match(/\{[\s\S]*\}/);
+        if (jsonMatch) {
+          try {
+            return JSON.parse(jsonMatch[0]);
+          } catch (parseErr) {
+            throw new Error('JSONパース失敗');
+          }
+        } else {
+          throw new Error('JSON形式が見つからない');
+        }
+      }
+      
+      throw new Error('応答形式が不正');
     }
 
     function renderAll() {
