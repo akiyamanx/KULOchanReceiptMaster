@@ -1132,8 +1132,12 @@
     }
 
     async function analyzeAllPending() {
+      alert('STEP1: ボタン押された！');
+      
       if (!apiKey) { showToast('APIキーを設定してください'); return; }
       if (pendingPhotos.length === 0) { showToast('撮影した写真がありません'); return; }
+      
+      alert('STEP2: APIキーOK、写真' + pendingPhotos.length + '枚');
       
       showLoading(`AI解析中... (0/${pendingPhotos.length})`);
       let successCount = 0;
@@ -1142,7 +1146,9 @@
       for (let i = 0; i < pendingPhotos.length; i++) {
         updateLoadingText(`AI解析中... (${i + 1}/${pendingPhotos.length})`);
         try {
+          alert('STEP3: API呼び出し開始...');
           const result = await analyzeReceipt(pendingPhotos[i]);
+          alert('STEP4: API結果=' + (result ? 'あり' : 'なし'));
           if (result) {
             result.id = 'RCP-' + Date.now() + '-' + i;
             result.photo = pendingPhotos[i];
@@ -1152,6 +1158,7 @@
             successCount++;
           }
         } catch (err) { 
+          alert('STEP-ERROR: ' + err.message);
           console.error('解析エラー:', err);
           lastError = err.message || '不明なエラー';
         }
@@ -1173,6 +1180,7 @@
     }
 
     async function analyzeReceipt(base64Image) {
+      alert('API-1: analyzeReceipt開始');
       const imageData = base64Image.replace(/^data:image\/\w+;base64,/, '');
       const prompt = `このレシート画像を解析して、以下のJSON形式で出力してください。必ず有効なJSONのみを出力し、他のテキストは含めないでください。
 {
@@ -1187,6 +1195,7 @@
 
       let response;
       try {
+        alert('API-2: fetch開始');
         response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -1195,31 +1204,41 @@
             generationConfig: { temperature: 0.1, maxOutputTokens: 2048 }
           })
         });
+        alert('API-3: fetch完了, status=' + response.status);
       } catch (fetchErr) {
+        alert('API-ERROR-FETCH: ' + fetchErr.message);
         throw new Error('通信エラー: ' + fetchErr.message);
       }
 
       const data = await response.json();
+      alert('API-4: JSON取得, keys=' + Object.keys(data).join(','));
       
       // APIエラーチェック
       if (data.error) {
+        alert('API-ERROR: ' + JSON.stringify(data.error));
         throw new Error('API: ' + (data.error.message || data.error.status || 'エラー'));
       }
       
       if (data.candidates?.[0]?.content?.parts?.[0]?.text) {
         const text = data.candidates[0].content.parts[0].text;
+        alert('API-5: テキスト取得, 長さ=' + text.length);
         const jsonMatch = text.match(/\{[\s\S]*\}/);
         if (jsonMatch) {
           try {
-            return JSON.parse(jsonMatch[0]);
+            const result = JSON.parse(jsonMatch[0]);
+            alert('API-6: パース成功!');
+            return result;
           } catch (parseErr) {
+            alert('API-ERROR-PARSE: ' + parseErr.message);
             throw new Error('JSONパース失敗');
           }
         } else {
+          alert('API-ERROR: JSONが見つからない, text=' + text.substring(0, 100));
           throw new Error('JSON形式が見つからない');
         }
       }
       
+      alert('API-ERROR: 応答形式不正, data=' + JSON.stringify(data).substring(0, 200));
       throw new Error('応答形式が不正');
     }
 
