@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#00d4ff">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="./manifest.json">
+  <title>レシートマスター - COCOMI</title>
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #0a1a2e 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    .logo {
+      font-size: 60px;
+      margin-bottom: 20px;
+    }
+    
+    .title {
+      font-size: 28px;
+      font-weight: 300;
+      letter-spacing: 8px;
+      color: #fff;
+      text-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    
+    .subtitle {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 40px;
+      letter-spacing: 2px;
+    }
+    
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+      max-width: 300px;
+    }
+    
+    .menu-btn {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 20px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .menu-btn:hover, .menu-btn:active {
+      background: rgba(255,255,255,0.2);
+      border-color: #00d4ff;
+      transform: translateY(-2px);
+    }
+    
+    .menu-icon {
+      font-size: 30px;
+    }
+    
+    .menu-text {
+      flex: 1;
+    }
+    
+    .menu-title {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    
+    .menu-desc {
+      font-size: 11px;
+      color: rgba(255,255,255,0.6);
+    }
+    
+    .menu-arrow {
+      font-size: 20px;
+      color: rgba(255,255,255,0.3);
+    }
+    
+    .footer {
+      margin-top: 40px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+    }
+    
+    .footer .heart {
+      color: #ff69b4;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="logo">📸</div>
+  <div class="title">COCOMI</div>
+  <div class="subtitle">Receipt Master System</div>
+  
+  <div class="menu">
+    <a href="./receipt_master.html" class="menu-btn">
+      <div class="menu-icon">📸</div>
+      <div class="menu-text">
+        <div class="menu-title">レシートマスター</div>
+        <div class="menu-desc">撮影・AI解析・現場管理</div>
+      </div>
+      <div class="menu-arrow">›</div>
+    </a>
+    
+    <a href="./expense_ledger.html" class="menu-btn">
+      <div class="menu-icon">📒</div>
+      <div class="menu-text">
+        <div class="menu-title">出納帳</div>
+        <div class="menu-desc">経費管理・現場別集計</div>
+      </div>
+      <div class="menu-arrow">›</div>
+    </a>
+  </div>
+  
+  <div class="footer">
+    COCOMI Sisters <span class="heart">♡</span><br>
+    想いが構造になり、構造が証明になる。
+  </div>
+
+  <script>
+    // Service Worker登録
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./service-worker.js')
+        .then(reg => console.log('SW registered'))
+        .catch(err => console.log('SW registration failed:', err));
+    }
+  </script>
+</body>
+</html>

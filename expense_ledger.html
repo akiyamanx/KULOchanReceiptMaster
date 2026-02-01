@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#9b59b6">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="./manifest.json">
+  <title>📒 出納帳 - COCOMI</title>
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', 'Segoe UI', sans-serif;
+      background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+      min-height: 100vh;
+      color: #fff;
+    }
+
+    /* ===== SPLASH ===== */
+    #splash {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #0a1a2e 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      transition: opacity 0.8s ease;
+    }
+    
+    #splash.fade-out { opacity: 0; pointer-events: none; }
+    
+    .splash-title {
+      font-size: 32px;
+      font-weight: 300;
+      letter-spacing: 8px;
+      color: #fff;
+      text-shadow: 0 0 10px #9b59b6, 0 0 20px #9b59b6;
+      margin-bottom: 15px;
+    }
+    
+    .splash-subtitle {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 2px;
+    }
+
+    /* ===== HEADER ===== */
+    .app-header {
+      background: rgba(0,0,0,0.3);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .app-title { font-size: 18px; font-weight: bold; }
+    
+    .header-btns { display: flex; gap: 8px; }
+    
+    .header-btn {
+      background: rgba(255,255,255,0.1);
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      color: #fff;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    /* ===== IMPORT SECTION ===== */
+    .import-section {
+      padding: 20px;
+      background: rgba(0,0,0,0.2);
+      margin: 10px 20px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    
+    .import-title { font-size: 14px; margin-bottom: 10px; color: rgba(255,255,255,0.8); }
+    
+    .import-btn {
+      background: linear-gradient(135deg, #9b59b6, #8e44ad);
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+    #import-ledger-input { display: none; }
+
+    /* ===== FILTER ===== */
+    .filter-section {
+      padding: 10px 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    
+    .filter-select {
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.3);
+      background: rgba(0,0,0,0.3);
+      color: #fff;
+      font-size: 13px;
+      flex: 1;
+      min-width: 100px;
+    }
+
+    /* ===== SUMMARY ===== */
+    .summary-section {
+      padding: 15px 20px;
+      background: rgba(0,0,0,0.2);
+      margin: 10px 20px;
+      border-radius: 12px;
+    }
+    
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      color: rgba(255,255,255,0.8);
+      padding: 5px 0;
+    }
+    
+    .summary-row.total {
+      font-size: 18px;
+      color: #fff;
+      font-weight: bold;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      margin-top: 10px;
+      padding-top: 10px;
+    }
+
+    /* ===== ENTRY LIST ===== */
+    .entry-list { padding: 10px 20px; }
+    
+    .date-group {
+      margin-bottom: 20px;
+    }
+    
+    .date-header {
+      font-size: 14px;
+      color: #00d4ff;
+      font-weight: bold;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      margin-bottom: 10px;
+    }
+    
+    .entry-card {
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 12px 15px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .entry-info { flex: 1; }
+    
+    .entry-store {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+    }
+    
+    .entry-name {
+      font-size: 14px;
+      color: #fff;
+      margin: 4px 0;
+    }
+    
+    .entry-project {
+      font-size: 11px;
+      color: #ffa500;
+      background: rgba(255,165,0,0.2);
+      padding: 2px 8px;
+      border-radius: 10px;
+      display: inline-block;
+    }
+    
+    .entry-amount {
+      font-size: 16px;
+      font-weight: bold;
+      color: #ff6b6b;
+    }
+    
+    .entry-qty {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      text-align: right;
+    }
+
+    /* ===== PROJECT SUMMARY ===== */
+    .project-summary {
+      padding: 20px;
+    }
+    
+    .project-card {
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 12px;
+    }
+    
+    .project-name {
+      font-size: 16px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    
+    .project-stats {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+    }
+    
+    .project-total {
+      font-size: 18px;
+      font-weight: bold;
+      color: #00d4ff;
+      text-align: right;
+      margin-top: 10px;
+    }
+
+    /* ===== TAB NAV ===== */
+    .tab-nav {
+      display: flex;
+      background: rgba(0,0,0,0.2);
+      padding: 10px;
+      gap: 8px;
+    }
+    
+    .tab-btn {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.7);
+      font-size: 13px;
+      cursor: pointer;
+    }
+    
+    .tab-btn.active {
+      background: linear-gradient(135deg, #9b59b6, #8e44ad);
+      color: #fff;
+    }
+
+    /* ===== EMPTY ===== */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: rgba(255,255,255,0.5);
+    }
+    
+    .empty-icon { font-size: 60px; margin-bottom: 20px; }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.9);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      z-index: 10003;
+      display: none;
+    }
+    
+    .toast.show {
+      display: block;
+      animation: fadeInOut 2.5s ease;
+    }
+    
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 0; }
+      10%, 90% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Splash -->
+  <div id="splash">
+    <div class="splash-title">📒 出納帳</div>
+    <div class="splash-subtitle">COCOMI Expense Ledger</div>
+  </div>
+
+  <!-- Main App -->
+  <div id="main-app" style="display:none;">
+    <div class="app-header">
+      <div class="app-title">📒 出納帳</div>
+      <div class="header-btns">
+        <button class="header-btn" onclick="exportCSV()">📊 CSV</button>
+        <button class="header-btn" onclick="exportBackup()">💾</button>
+        <button class="header-btn" onclick="document.getElementById('backup-input').click()">📂</button>
+      </div>
+      <input type="file" id="backup-input" accept=".json" style="display:none" onchange="importBackup(event)">
+    </div>
+
+    <!-- Import Section -->
+    <div class="import-section">
+      <div class="import-title">📥 レシートマスターからデータを取り込む</div>
+      <button class="import-btn" onclick="document.getElementById('import-ledger-input').click()">
+        JSONファイルを選択
+      </button>
+      <input type="file" id="import-ledger-input" accept=".json" onchange="importLedgerData(event)">
+    </div>
+
+    <!-- Tab Navigation -->
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="showTab('entries', this)">📋 明細一覧</button>
+      <button class="tab-btn" onclick="showTab('projects', this)">🏠 現場別集計</button>
+    </div>
+
+    <!-- Tab: Entries -->
+    <div id="tab-entries" class="tab-content">
+      <div class="filter-section">
+        <select id="filter-project" class="filter-select" onchange="renderEntries()">
+          <option value="">🏠 全ての現場</option>
+        </select>
+        <select id="filter-store" class="filter-select" onchange="renderEntries()">
+          <option value="">🏪 全ての店舗</option>
+        </select>
+        <select id="filter-month" class="filter-select" onchange="renderEntries()">
+          <option value="">📅 全ての月</option>
+        </select>
+      </div>
+
+      <div class="summary-section">
+        <div class="summary-row">
+          <span>明細数</span>
+          <span id="summary-count">0件</span>
+        </div>
+        <div class="summary-row total">
+          <span>合計支出</span>
+          <span id="summary-total">¥0</span>
+        </div>
+      </div>
+
+      <div id="entry-list" class="entry-list"></div>
+    </div>
+
+    <!-- Tab: Projects -->
+    <div id="tab-projects" class="tab-content" style="display:none;">
+      <div id="project-summary" class="project-summary"></div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <script>
+    const STORAGE_KEY = 'cocomi_expense_ledger';
+    let entries = [];
+
+    document.addEventListener('DOMContentLoaded', function() {
+      loadData();
+      setTimeout(() => {
+        document.getElementById('splash').classList.add('fade-out');
+        setTimeout(() => {
+          document.getElementById('splash').style.display = 'none';
+          document.getElementById('main-app').style.display = 'block';
+          renderAll();
+        }, 800);
+      }, 2000);
+    });
+
+    function loadData() {
+      try { entries = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch(e) { entries = []; }
+    }
+
+    function saveData() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+    }
+
+    function showTab(tabName, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
+      btn.classList.add('active');
+      document.getElementById('tab-' + tabName).style.display = 'block';
+      if (tabName === 'projects') renderProjectSummary();
+    }
+
+    function importLedgerData(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const data = JSON.parse(e.target.result);
+          
+          if (data.type === 'ledger_entries' && data.entries) {
+            // レシートマスターからの出納帳用データ
+            let addedCount = 0;
+            data.entries.forEach(entry => {
+              // 重複チェック（receiptId + itemName）
+              const exists = entries.some(e => e.receiptId === entry.receiptId && e.itemName === entry.itemName);
+              if (!exists) {
+                entries.push({
+                  id: 'EXP-' + Date.now() + '-' + Math.random().toString(36).substr(2, 5),
+                  date: entry.date,
+                  store: entry.store,
+                  projectName: entry.projectName,
+                  itemName: entry.itemName,
+                  qty: entry.qty,
+                  price: entry.price,
+                  total: entry.total,
+                  receiptId: entry.receiptId,
+                  importedAt: new Date().toISOString()
+                });
+                addedCount++;
+              }
+            });
+            
+            saveData();
+            renderAll();
+            showToast(`${addedCount}件の明細を追加しました`);
+          } else {
+            showToast('対応していないファイル形式です');
+          }
+        } catch (err) {
+          showToast('ファイルの読み込みに失敗しました');
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = '';
+    }
+
+    function renderAll() {
+      updateFilters();
+      renderEntries();
+    }
+
+    function updateFilters() {
+      // 現場フィルター
+      const projects = [...new Set(entries.map(e => e.projectName).filter(Boolean))];
+      const projectSelect = document.getElementById('filter-project');
+      const currentProject = projectSelect.value;
+      projectSelect.innerHTML = '<option value="">🏠 全ての現場</option>' + 
+        projects.map(p => `<option value="${p}" ${p === currentProject ? 'selected' : ''}>${p}</option>`).join('');
+      
+      // 店舗フィルター
+      const stores = [...new Set(entries.map(e => e.store).filter(Boolean))];
+      const storeSelect = document.getElementById('filter-store');
+      const currentStore = storeSelect.value;
+      storeSelect.innerHTML = '<option value="">🏪 全ての店舗</option>' + 
+        stores.map(s => `<option value="${s}" ${s === currentStore ? 'selected' : ''}>${s}</option>`).join('');
+      
+      // 月フィルター
+      const months = [...new Set(entries.map(e => e.date?.slice(0, 7)).filter(Boolean))].sort().reverse();
+      const monthSelect = document.getElementById('filter-month');
+      const currentMonth = monthSelect.value;
+      monthSelect.innerHTML = '<option value="">📅 全ての月</option>' + 
+        months.map(m => `<option value="${m}" ${m === currentMonth ? 'selected' : ''}>${m}</option>`).join('');
+    }
+
+    function renderEntries() {
+      const listEl = document.getElementById('entry-list');
+      const filterProject = document.getElementById('filter-project').value;
+      const filterStore = document.getElementById('filter-store').value;
+      const filterMonth = document.getElementById('filter-month').value;
+      
+      let filtered = entries.filter(e => {
+        if (filterProject && e.projectName !== filterProject) return false;
+        if (filterStore && e.store !== filterStore) return false;
+        if (filterMonth && !e.date?.startsWith(filterMonth)) return false;
+        return true;
+      });
+      
+      // 日付でソート
+      filtered.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+      
+      // サマリー更新
+      document.getElementById('summary-count').textContent = `${filtered.length}件`;
+      document.getElementById('summary-total').textContent = `¥${filtered.reduce((s, e) => s + (e.total || 0), 0).toLocaleString()}`;
+      
+      if (filtered.length === 0) {
+        listEl.innerHTML = `<div class="empty-state"><div class="empty-icon">📒</div><p>レシートマスターから<br>データを取り込んでください</p></div>`;
+        return;
+      }
+      
+      // 日付ごとにグループ化
+      const grouped = {};
+      filtered.forEach(e => {
+        const date = e.date || '日付不明';
+        if (!grouped[date]) grouped[date] = [];
+        grouped[date].push(e);
+      });
+      
+      listEl.innerHTML = Object.entries(grouped).map(([date, items]) => `
+        <div class="date-group">
+          <div class="date-header">${formatDate(date)} （${items.length}件 / ¥${items.reduce((s, e) => s + (e.total || 0), 0).toLocaleString()}）</div>
+          ${items.map(e => `
+            <div class="entry-card">
+              <div class="entry-info">
+                <div class="entry-store">${e.store || ''}</div>
+                <div class="entry-name">${e.itemName || '品名不明'}</div>
+                ${e.projectName ? `<div class="entry-project">🏠 ${e.projectName}</div>` : ''}
+              </div>
+              <div>
+                <div class="entry-amount">¥${(e.total || 0).toLocaleString()}</div>
+                <div class="entry-qty">× ${e.qty || 1}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `).join('');
+    }
+
+    function renderProjectSummary() {
+      const summaryEl = document.getElementById('project-summary');
+      
+      // 現場ごとに集計
+      const projectStats = {};
+      entries.forEach(e => {
+        const p = e.projectName || '未設定';
+        if (!projectStats[p]) projectStats[p] = { count: 0, total: 0, stores: new Set() };
+        projectStats[p].count++;
+        projectStats[p].total += e.total || 0;
+        if (e.store) projectStats[p].stores.add(e.store);
+      });
+      
+      if (Object.keys(projectStats).length === 0) {
+        summaryEl.innerHTML = `<div class="empty-state"><div class="empty-icon">🏠</div><p>データがありません</p></div>`;
+        return;
+      }
+      
+      // 合計金額順でソート
+      const sorted = Object.entries(projectStats).sort((a, b) => b[1].total - a[1].total);
+      
+      summaryEl.innerHTML = sorted.map(([name, stats]) => `
+        <div class="project-card">
+          <div class="project-name">🏠 ${name}</div>
+          <div class="project-stats">
+            <span>明細数: ${stats.count}件</span>
+            <span>店舗数: ${stats.stores.size}店</span>
+          </div>
+          <div class="project-total">¥${stats.total.toLocaleString()}</div>
+        </div>
+      `).join('');
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr || dateStr === '日付不明') return dateStr;
+      const d = new Date(dateStr);
+      if (isNaN(d)) return dateStr;
+      return `${d.getFullYear()}/${d.getMonth()+1}/${d.getDate()}（${['日','月','火','水','木','金','土'][d.getDay()]}）`;
+    }
+
+    function exportCSV() {
+      if (entries.length === 0) { showToast('データがありません'); return; }
+      
+      const headers = ['日付', '店舗', '品名', '数量', '単価', '金額', '現場名'];
+      const rows = entries.map(e => [
+        e.date || '',
+        e.store || '',
+        e.itemName || '',
+        e.qty || 1,
+        e.price || 0,
+        e.total || 0,
+        e.projectName || ''
+      ]);
+      
+      const csv = [headers, ...rows].map(r => r.map(c => `"${c}"`).join(',')).join('\n');
+      const bom = '\uFEFF';
+      const blob = new Blob([bom + csv], { type: 'text/csv;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `expense_ledger_${new Date().toISOString().slice(0,10)}.csv`;
+      a.click();
+      showToast('CSVをダウンロードしました');
+    }
+
+    function exportBackup() {
+      const data = { version: '1.0', exported: new Date().toISOString(), entries };
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `expense_ledger_backup_${new Date().toISOString().slice(0,10)}.json`;
+      a.click();
+      showToast('バックアップを保存しました');
+    }
+
+    function importBackup(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const data = JSON.parse(e.target.result);
+          if (data.entries) {
+            entries = data.entries;
+            saveData();
+            renderAll();
+            showToast(`${entries.length}件の明細を復元しました`);
+          }
+        } catch (err) { showToast('ファイルの読み込みに失敗しました'); }
+      };
+      reader.readAsText(file);
+      event.target.value = '';
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.remove('show');
+      void t.offsetWidth;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2500);
+    }
+  </script>
+
+  <script>
+    // Service Worker登録
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./service-worker.js')
+        .then(reg => console.log('SW registered'))
+        .catch(err => console.log('SW registration failed:', err));
+    }
+  </script>
+</body>
+</html>
