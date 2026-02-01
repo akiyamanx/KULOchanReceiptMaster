@@ -1,4 +1,4 @@
-const CACHE_NAME = 'receipt-master-v1';
+const CACHE_NAME = 'receipt-master-v2';
 const urlsToCache = [
   './',
   './index.html',
