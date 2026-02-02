@@ -20,124 +20,62 @@
 
     /* ===== SPLASH ===== */
     #splash {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #0a1a2e 100%);
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      z-index: 10000;
-      transition: opacity 0.8s ease;
+      z-index: 10000; transition: opacity 0.8s ease;
     }
     #splash.fade-out { opacity: 0; pointer-events: none; }
-    .splash-title {
-      font-size: 32px; font-weight: 300; letter-spacing: 10px; color: #fff;
-      text-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff;
-      margin-bottom: 10px;
-    }
+    .splash-title { font-size: 32px; font-weight: 300; letter-spacing: 10px; color: #fff; text-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff; margin-bottom: 10px; }
     .splash-sub { font-size: 12px; color: rgba(255,255,255,0.5); letter-spacing: 2px; }
 
     /* ===== HEADER ===== */
-    .header {
-      background: rgba(0,0,0,0.3);
-      padding: 15px 20px;
-      display: flex; justify-content: space-between; align-items: center;
-      position: sticky; top: 0; z-index: 100;
-    }
+    .header { background: rgba(0,0,0,0.3); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
     .header-title { font-size: 18px; font-weight: bold; }
     .header-btns { display: flex; gap: 8px; }
-    .header-btn {
-      background: rgba(255,255,255,0.1);
-      border: none; padding: 8px 12px; border-radius: 6px;
-      color: #fff; font-size: 12px; cursor: pointer;
-    }
+    .header-btn { background: rgba(255,255,255,0.1); border: none; padding: 8px 12px; border-radius: 6px; color: #fff; font-size: 12px; cursor: pointer; }
 
     /* ===== TAB NAV ===== */
-    .tab-nav {
-      display: flex; background: rgba(0,0,0,0.2); padding: 10px; gap: 8px; overflow-x: auto;
-    }
-    .tab-btn {
-      flex-shrink: 0; padding: 10px 14px; border: none; border-radius: 8px;
-      background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7);
-      font-size: 12px; cursor: pointer; white-space: nowrap;
-    }
+    .tab-nav { display: flex; background: rgba(0,0,0,0.2); padding: 10px; gap: 8px; overflow-x: auto; }
+    .tab-btn { flex-shrink: 0; padding: 10px 14px; border: none; border-radius: 8px; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); font-size: 12px; cursor: pointer; white-space: nowrap; }
     .tab-btn.active { background: linear-gradient(135deg, #00d4ff, #9b59b6); color: #fff; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
     /* ===== API KEY ===== */
-    #apikey-screen {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-      display: none; flex-direction: column; align-items: center; justify-content: center;
-      z-index: 9999; padding: 20px;
-    }
+    #apikey-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); display: none; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; padding: 20px; }
     #apikey-screen.active { display: flex; }
-    .apikey-box {
-      background: rgba(255,255,255,0.1); border-radius: 16px; padding: 30px;
-      max-width: 400px; width: 100%; text-align: center;
-    }
+    .apikey-box { background: rgba(255,255,255,0.1); border-radius: 16px; padding: 30px; max-width: 400px; width: 100%; text-align: center; }
     .apikey-title { font-size: 20px; margin-bottom: 10px; }
     .apikey-desc { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 20px; line-height: 1.6; }
-    .apikey-input {
-      width: 100%; padding: 14px; border: 2px solid rgba(255,255,255,0.3);
-      border-radius: 8px; background: rgba(0,0,0,0.3); color: #fff; font-size: 14px; margin-bottom: 15px;
-    }
-    .apikey-btn {
-      width: 100%; padding: 14px; background: linear-gradient(135deg, #00d4ff, #9b59b6);
-      border: none; border-radius: 8px; color: #fff; font-size: 16px; font-weight: bold; cursor: pointer;
-    }
+    .apikey-input { width: 100%; padding: 14px; border: 2px solid rgba(255,255,255,0.3); border-radius: 8px; background: rgba(0,0,0,0.3); color: #fff; font-size: 14px; margin-bottom: 15px; }
+    .apikey-btn { width: 100%; padding: 14px; background: linear-gradient(135deg, #00d4ff, #9b59b6); border: none; border-radius: 8px; color: #fff; font-size: 16px; font-weight: bold; cursor: pointer; }
 
     /* ===== CAMERA ===== */
     .camera-section { padding: 20px; text-align: center; }
-    .camera-btn {
-      background: linear-gradient(135deg, #00d4ff, #0099cc);
-      border: none; padding: 18px 36px; border-radius: 12px;
-      color: #fff; font-size: 16px; font-weight: bold; cursor: pointer;
-    }
+    .camera-btn { background: linear-gradient(135deg, #00d4ff, #0099cc); border: none; padding: 18px 36px; border-radius: 12px; color: #fff; font-size: 16px; font-weight: bold; cursor: pointer; }
     #camera-input { display: none; }
     .pending-photos { margin-top: 15px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
     .pending-photo { width: 50px; height: 50px; border-radius: 8px; object-fit: cover; border: 2px solid #ffa500; }
     .pending-info { margin-top: 15px; color: #ffa500; font-size: 13px; display: none; }
     .pending-info.show { display: block; }
-    .analyze-btn {
-      margin-top: 15px; background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
-      border: none; padding: 14px 28px; border-radius: 10px;
-      color: #fff; font-size: 15px; font-weight: bold; cursor: pointer; display: none;
-    }
+    .analyze-btn { margin-top: 15px; background: linear-gradient(135deg, #ff6b6b, #ee5a5a); border: none; padding: 14px 28px; border-radius: 10px; color: #fff; font-size: 15px; font-weight: bold; cursor: pointer; display: none; }
     .analyze-btn.show { display: inline-block; }
 
     /* ===== SECTIONS ===== */
-    .section {
-      padding: 15px 20px; background: rgba(0,0,0,0.2);
-      margin: 10px 20px; border-radius: 12px;
-    }
-    .section-header {
-      display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;
-    }
+    .section { padding: 15px 20px; background: rgba(0,0,0,0.2); margin: 10px 20px; border-radius: 12px; }
+    .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
     .section-title { font-size: 14px; font-weight: bold; }
-    .section-btn {
-      background: rgba(0,212,255,0.3); border: none; padding: 6px 12px;
-      border-radius: 6px; color: #00d4ff; font-size: 12px; cursor: pointer;
-    }
+    .section-btn { background: rgba(0,212,255,0.3); border: none; padding: 6px 12px; border-radius: 6px; color: #00d4ff; font-size: 12px; cursor: pointer; }
 
     /* ===== TAGS ===== */
     .tag-list { display: flex; flex-wrap: wrap; gap: 8px; }
-    .tag {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 6px 12px; background: rgba(255,255,255,0.1);
-      border-radius: 20px; font-size: 12px; color: rgba(255,255,255,0.8);
-    }
-    .tag-delete {
-      background: none; border: none; color: rgba(255,255,255,0.5);
-      cursor: pointer; font-size: 14px; padding: 0; line-height: 1;
-    }
-    .tag-delete:hover { color: #ff6b6b; }
+    .tag { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: rgba(255,255,255,0.1); border-radius: 20px; font-size: 12px; color: rgba(255,255,255,0.8); }
+    .tag-delete { background: none; border: none; color: rgba(255,255,255,0.5); cursor: pointer; font-size: 14px; padding: 0; line-height: 1; }
 
     /* ===== FILTER ===== */
     .filter-section { padding: 10px 20px; display: flex; gap: 10px; flex-wrap: wrap; }
-    .filter-select {
-      padding: 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.3);
-      background: rgba(0,0,0,0.3); color: #fff; font-size: 12px; flex: 1; min-width: 90px;
-    }
+    .filter-select { padding: 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.3); background: rgba(0,0,0,0.3); color: #fff; font-size: 12px; flex: 1; min-width: 90px; }
 
     /* ===== SUMMARY ===== */
     .summary-row { display: flex; justify-content: space-between; font-size: 14px; color: rgba(255,255,255,0.8); padding: 5px 0; }
@@ -145,41 +83,50 @@
 
     /* ===== RECEIPT LIST ===== */
     .receipt-list { padding: 10px 20px; }
-    .receipt-card { background: rgba(255,255,255,0.1); border-radius: 12px; padding: 15px; margin-bottom: 12px; }
-    .receipt-header { margin-bottom: 10px; }
+    .receipt-card { background: rgba(255,255,255,0.1); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+    .receipt-header { padding: 15px; cursor: pointer; }
+    .receipt-header-row { display: flex; justify-content: space-between; align-items: center; }
     .receipt-date { font-size: 14px; color: #00d4ff; font-weight: bold; }
     .receipt-store { font-size: 13px; color: rgba(255,255,255,0.8); }
+    .receipt-total-badge { font-size: 16px; font-weight: bold; color: #fff; }
     .receipt-badges { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; }
-    .badge {
-      font-size: 10px; padding: 3px 8px; border-radius: 10px; display: inline-block;
-    }
-    .badge-project { background: rgba(255,165,0,0.2); color: #ffa500; }
+    .badge { font-size: 10px; padding: 3px 8px; border-radius: 10px; }
     .badge-category { background: rgba(0,212,255,0.2); color: #00d4ff; }
-    .receipt-items { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; margin-top: 10px; }
-    .receipt-item { display: flex; justify-content: space-between; font-size: 12px; color: rgba(255,255,255,0.7); padding: 3px 0; }
-    .receipt-total { display: flex; justify-content: space-between; font-size: 16px; color: #fff; font-weight: bold; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.2); }
-    .receipt-footer { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.1); }
-    .receipt-select {
-      padding: 8px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.3);
-      background: rgba(0,0,0,0.3); color: #fff; font-size: 11px; flex: 1; min-width: 80px;
-    }
-    .delete-btn {
-      background: rgba(255,0,0,0.3); border: none; padding: 8px 12px;
-      border-radius: 6px; color: #ff6b6b; font-size: 12px; cursor: pointer;
-    }
+    .badge-items { background: rgba(255,165,0,0.2); color: #ffa500; }
+    .expand-icon { font-size: 12px; color: rgba(255,255,255,0.5); transition: transform 0.3s; }
+    .receipt-card.expanded .expand-icon { transform: rotate(180deg); }
+
+    /* ===== RECEIPT DETAIL ===== */
+    .receipt-detail { display: none; border-top: 1px solid rgba(255,255,255,0.1); padding: 15px; background: rgba(0,0,0,0.2); }
+    .receipt-card.expanded .receipt-detail { display: block; }
+
+    /* ===== ITEM LIST ===== */
+    .item-list { margin-bottom: 15px; }
+    .item-row { display: flex; align-items: center; gap: 10px; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 8px; margin-bottom: 6px; }
+    .item-checkbox { width: 22px; height: 22px; accent-color: #00d4ff; cursor: pointer; flex-shrink: 0; }
+    .item-info { flex: 1; min-width: 0; }
+    .item-name { font-size: 13px; color: #fff; word-break: break-all; }
+    .item-qty { font-size: 11px; color: rgba(255,255,255,0.6); }
+    .item-price { font-size: 14px; font-weight: bold; color: #00d4ff; white-space: nowrap; }
+    .item-project { font-size: 10px; color: #ffa500; background: rgba(255,165,0,0.2); padding: 2px 6px; border-radius: 4px; margin-left: 5px; white-space: nowrap; }
+
+    /* ===== ASSIGN SECTION ===== */
+    .assign-section { display: flex; gap: 10px; flex-wrap: wrap; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 10px; }
+    .assign-select { flex: 1; min-width: 120px; padding: 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.3); background: rgba(0,0,0,0.3); color: #fff; font-size: 12px; }
+    .assign-btn { padding: 10px 16px; background: linear-gradient(135deg, #ffa500, #ff8c00); border: none; border-radius: 6px; color: #fff; font-size: 12px; font-weight: bold; cursor: pointer; white-space: nowrap; }
+    .clear-btn { padding: 10px 12px; background: rgba(255,100,100,0.3); border: none; border-radius: 6px; color: #ff6b6b; font-size: 12px; cursor: pointer; }
+
+    /* ===== RECEIPT FOOTER ===== */
+    .receipt-footer { display: flex; gap: 8px; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); }
+    .receipt-select { padding: 8px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.3); background: rgba(0,0,0,0.3); color: #fff; font-size: 11px; flex: 1; }
+    .delete-btn { background: rgba(255,0,0,0.3); border: none; padding: 8px 12px; border-radius: 6px; color: #ff6b6b; font-size: 12px; cursor: pointer; }
 
     /* ===== CATEGORY MANAGEMENT ===== */
     .category-group { margin-bottom: 20px; }
     .category-group-title { font-size: 13px; color: #00d4ff; margin-bottom: 10px; padding-bottom: 5px; border-bottom: 1px solid rgba(0,212,255,0.3); }
     .add-input-row { display: flex; gap: 10px; margin-top: 15px; }
-    .add-input {
-      flex: 1; padding: 12px; border: 2px solid rgba(255,255,255,0.3);
-      border-radius: 8px; background: rgba(0,0,0,0.3); color: #fff; font-size: 14px;
-    }
-    .add-btn {
-      padding: 12px 20px; background: linear-gradient(135deg, #00d4ff, #9b59b6);
-      border: none; border-radius: 8px; color: #fff; font-size: 14px; cursor: pointer;
-    }
+    .add-input { flex: 1; padding: 12px; border: 2px solid rgba(255,255,255,0.3); border-radius: 8px; background: rgba(0,0,0,0.3); color: #fff; font-size: 14px; }
+    .add-btn { padding: 12px 20px; background: linear-gradient(135deg, #00d4ff, #9b59b6); border: none; border-radius: 8px; color: #fff; font-size: 14px; cursor: pointer; }
 
     /* ===== EXPORT ===== */
     .export-card { background: rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; margin-bottom: 15px; }
@@ -189,7 +136,10 @@
     .export-btn { width: 100%; padding: 14px; border: none; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; margin-top: 10px; }
     .export-btn.primary { background: linear-gradient(135deg, #00d4ff, #0099cc); color: #fff; }
     .export-btn.secondary { background: linear-gradient(135deg, #9b59b6, #8e44ad); color: #fff; }
-    .export-preview { background: rgba(0,0,0,0.3); border-radius: 8px; padding: 15px; margin-top: 15px; font-size: 12px; color: rgba(255,255,255,0.8); max-height: 150px; overflow-y: auto; display: none; }
+    .export-preview { background: rgba(0,0,0,0.3); border-radius: 8px; padding: 15px; margin-top: 15px; font-size: 12px; color: rgba(255,255,255,0.8); max-height: 300px; overflow-y: auto; }
+    .export-item { padding: 8px; background: rgba(255,255,255,0.05); border-radius: 6px; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; }
+    .export-item-name { font-size: 12px; flex: 1; }
+    .export-item-price { font-size: 12px; color: #00d4ff; font-weight: bold; }
 
     /* ===== EMPTY ===== */
     .empty-state { text-align: center; padding: 50px 20px; color: rgba(255,255,255,0.5); }
@@ -221,23 +171,20 @@
 </head>
 <body>
 
-  <!-- Splash -->
   <div id="splash">
     <div class="splash-title">COCOMI</div>
-    <div class="splash-sub">Receipt Master System</div>
+    <div class="splash-sub">Receipt Master v3.1</div>
   </div>
 
-  <!-- API Key Screen -->
   <div id="apikey-screen">
     <div class="apikey-box">
       <div class="apikey-title">🔑 Gemini APIキー設定</div>
-      <div class="apikey-desc">レシートのAI解析にGemini APIを使用します。<br>APIキーを入力してください。</div>
+      <div class="apikey-desc">レシートのAI解析にGemini APIを使用します。</div>
       <input type="password" id="apikey-input" class="apikey-input" placeholder="AIza...">
       <button class="apikey-btn" onclick="saveApiKey()">保存して開始</button>
     </div>
   </div>
 
-  <!-- Main App -->
   <div id="main-app" style="display:none;">
     <div class="header">
       <div class="header-title">📸 レシートマスター</div>
@@ -249,14 +196,12 @@
       <input type="file" id="import-file" accept=".json" style="display:none" onchange="importBackup(event)">
     </div>
 
-    <!-- Tab Nav -->
     <div class="tab-nav">
       <button class="tab-btn active" onclick="showTab('receipts', this)">📋 レシート</button>
       <button class="tab-btn" onclick="showTab('categories', this)">📂 勘定科目</button>
       <button class="tab-btn" onclick="showTab('export', this)">📤 出力</button>
     </div>
 
-    <!-- Tab: Receipts -->
     <div id="tab-receipts" class="tab-content active">
       <div class="camera-section">
         <button class="camera-btn" onclick="document.getElementById('camera-input').click()">📸 レシートを撮影</button>
@@ -275,12 +220,8 @@
       </div>
 
       <div class="filter-section">
-        <select id="filter-project" class="filter-select" onchange="renderReceipts()">
-          <option value="">全ての現場</option>
-        </select>
-        <select id="filter-category" class="filter-select" onchange="renderReceipts()">
-          <option value="">全ての科目</option>
-        </select>
+        <select id="filter-project" class="filter-select" onchange="renderReceipts()"><option value="">全ての現場</option></select>
+        <select id="filter-category" class="filter-select" onchange="renderReceipts()"><option value="">全ての科目</option></select>
         <select id="filter-sort" class="filter-select" onchange="renderReceipts()">
           <option value="desc">新しい順</option>
           <option value="asc">古い順</option>
@@ -290,26 +231,22 @@
       <div class="section">
         <div class="summary-row"><span>レシート数</span><span id="sum-count">0件</span></div>
         <div class="summary-row"><span>小計</span><span id="sum-subtotal">¥0</span></div>
-        <div class="summary-row"><span>消費税</span><span id="sum-tax">¥0</span></div>
         <div class="summary-row total"><span>合計</span><span id="sum-total">¥0</span></div>
       </div>
 
       <div id="receipt-list" class="receipt-list"></div>
     </div>
 
-    <!-- Tab: Categories -->
     <div id="tab-categories" class="tab-content">
       <div style="padding: 20px;">
         <div class="category-group">
           <div class="category-group-title">💼 経費（支出）</div>
           <div id="expense-categories" class="tag-list"></div>
         </div>
-        
         <div class="category-group">
           <div class="category-group-title">📄 控除証明書</div>
           <div id="deduction-categories" class="tag-list"></div>
         </div>
-
         <div class="add-input-row">
           <select id="add-category-type" class="filter-select" style="flex:0 0 100px;">
             <option value="expense">経費</option>
@@ -321,32 +258,26 @@
       </div>
     </div>
 
-    <!-- Tab: Export -->
     <div id="tab-export" class="tab-content">
       <div style="padding: 20px;">
         <div class="export-card">
-          <div class="export-title">📄 見積書・請求書用</div>
-          <div class="export-desc">選択した現場の材料費合計を出力します。</div>
-          <select id="export-project" class="export-select" onchange="updateExportPreview()">
-            <option value="">現場を選択...</option>
-          </select>
-          <div id="export-preview" class="export-preview"></div>
-          <button class="export-btn primary" onclick="copyForInvoice()">📋 コピー</button>
+          <div class="export-title">📄 見積書・請求書用（商品別）</div>
+          <div class="export-desc">現場に割り当てた商品を一覧で出力。<br>💡金額は仕切り価格です。売り値に変更してください。</div>
+          <select id="export-project" class="export-select" onchange="updateExportPreview()"><option value="">現場を選択...</option></select>
+          <div id="export-preview" class="export-preview" style="display:none;"></div>
+          <button class="export-btn primary" onclick="copyItemsForInvoice()">📋 商品リストをコピー</button>
         </div>
 
         <div class="export-card">
           <div class="export-title">📒 出納帳用JSON</div>
-          <div class="export-desc">レシート詳細をJSONでダウンロードします。</div>
-          <select id="export-ledger-project" class="export-select">
-            <option value="">全ての現場</option>
-          </select>
+          <div class="export-desc">レシート詳細をJSONでダウンロード。</div>
+          <select id="export-ledger-project" class="export-select"><option value="">全ての現場</option></select>
           <button class="export-btn secondary" onclick="downloadLedgerJSON()">📥 ダウンロード</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Modal: Add Project -->
   <div id="modal-project" class="modal">
     <div class="modal-box">
       <div class="modal-title">🏠 現場を追加</div>
@@ -358,53 +289,27 @@
     </div>
   </div>
 
-  <!-- Loading -->
   <div id="loading" class="loading">
     <div class="spinner"></div>
     <div class="loading-text" id="loading-text">AI解析中...</div>
   </div>
 
-  <!-- Toast -->
   <div id="toast" class="toast"></div>
 
   <script>
-    // ===== CONFIG =====
-    const STORAGE = {
-      apiKey: 'cocomi_receipt_apikey',
-      receipts: 'cocomi_receipt_master',
-      projects: 'cocomi_receipt_projects',
-      categories: 'cocomi_receipt_categories'
-    };
-
-    // ===== DEFAULT CATEGORIES =====
+    const STORAGE = { apiKey: 'cocomi_receipt_apikey', receipts: 'cocomi_receipt_master_v31', projects: 'cocomi_receipt_projects', categories: 'cocomi_receipt_categories' };
     const DEFAULT_CATEGORIES = {
-      expense: [
-        '材料費', '外注費', '車両費', '燃料費', '旅費交通費', '消耗品費',
-        '通信費', '水道光熱費', '地代家賃', '修繕費', '広告宣伝費',
-        '接待交際費', '保険料', '租税公課', '支払手数料', '雑費'
-      ],
-      deduction: [
-        '社会保険料控除', '生命保険料控除', '地震保険料控除',
-        '小規模企業共済等', '医療費控除', '寄附金控除'
-      ]
+      expense: ['材料費', '外注費', '車両費', '燃料費', '旅費交通費', '消耗品費', '通信費', '水道光熱費', '地代家賃', '修繕費', '広告宣伝費', '接待交際費', '保険料', '租税公課', '支払手数料', '雑費'],
+      deduction: ['社会保険料控除', '生命保険料控除', '地震保険料控除', '小規模企業共済等', '医療費控除', '寄附金控除']
     };
 
-    // ===== STATE =====
-    let apiKey = '';
-    let receipts = [];
-    let projects = [];
-    let categories = { expense: [], deduction: [] };
-    let pendingPhotos = [];
+    let apiKey = '', receipts = [], projects = [], categories = { expense: [], deduction: [] }, pendingPhotos = [], expandedReceiptId = null;
 
-    // ===== INIT =====
     document.addEventListener('DOMContentLoaded', () => {
       loadData();
       setTimeout(() => {
         document.getElementById('splash').classList.add('fade-out');
-        setTimeout(() => {
-          document.getElementById('splash').style.display = 'none';
-          checkApiKey();
-        }, 800);
+        setTimeout(() => { document.getElementById('splash').style.display = 'none'; checkApiKey(); }, 800);
       }, 2000);
     });
 
@@ -412,16 +317,7 @@
       apiKey = localStorage.getItem(STORAGE.apiKey) || '';
       try { receipts = JSON.parse(localStorage.getItem(STORAGE.receipts)) || []; } catch(e) { receipts = []; }
       try { projects = JSON.parse(localStorage.getItem(STORAGE.projects)) || []; } catch(e) { projects = []; }
-      try { 
-        const saved = JSON.parse(localStorage.getItem(STORAGE.categories));
-        if (saved && saved.expense && saved.deduction) {
-          categories = saved;
-        } else {
-          categories = JSON.parse(JSON.stringify(DEFAULT_CATEGORIES));
-        }
-      } catch(e) { 
-        categories = JSON.parse(JSON.stringify(DEFAULT_CATEGORIES));
-      }
+      try { const s = JSON.parse(localStorage.getItem(STORAGE.categories)); categories = (s && s.expense) ? s : JSON.parse(JSON.stringify(DEFAULT_CATEGORIES)); } catch(e) { categories = JSON.parse(JSON.stringify(DEFAULT_CATEGORIES)); }
     }
 
     function saveData() {
@@ -430,195 +326,99 @@
       localStorage.setItem(STORAGE.categories, JSON.stringify(categories));
     }
 
-    // ===== API KEY =====
-    function checkApiKey() {
-      if (!apiKey) {
-        document.getElementById('apikey-screen').classList.add('active');
-      } else {
-        showMainApp();
-      }
-    }
-
+    function checkApiKey() { if (!apiKey) document.getElementById('apikey-screen').classList.add('active'); else showMainApp(); }
     function saveApiKey() {
-      const input = document.getElementById('apikey-input').value.trim();
-      if (!input) { showToast('APIキーを入力してください'); return; }
-      apiKey = input;
-      localStorage.setItem(STORAGE.apiKey, apiKey);
-      document.getElementById('apikey-screen').classList.remove('active');
-      showMainApp();
+      const v = document.getElementById('apikey-input').value.trim();
+      if (!v) { showToast('APIキーを入力'); return; }
+      apiKey = v; localStorage.setItem(STORAGE.apiKey, apiKey);
+      document.getElementById('apikey-screen').classList.remove('active'); showMainApp();
     }
+    function showApiKeyScreen() { document.getElementById('apikey-input').value = apiKey; document.getElementById('apikey-screen').classList.add('active'); document.getElementById('main-app').style.display = 'none'; }
+    function showMainApp() { document.getElementById('main-app').style.display = 'block'; renderAll(); }
 
-    function showApiKeyScreen() {
-      document.getElementById('apikey-input').value = apiKey;
-      document.getElementById('apikey-screen').classList.add('active');
-      document.getElementById('main-app').style.display = 'none';
-    }
-
-    function showMainApp() {
-      document.getElementById('main-app').style.display = 'block';
-      renderAll();
-    }
-
-    // ===== TABS =====
     function showTab(name, btn) {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById('tab-' + name).classList.add('active');
+      btn.classList.add('active'); document.getElementById('tab-' + name).classList.add('active');
       if (name === 'export') updateExportSelects();
     }
 
-    // ===== RENDER ALL =====
-    function renderAll() {
-      renderProjects();
-      renderCategories();
-      updateFilters();
-      renderReceipts();
-    }
+    function renderAll() { renderProjects(); renderCategories(); updateFilters(); renderReceipts(); }
 
-    // ===== PROJECTS =====
     function renderProjects() {
       const el = document.getElementById('project-list');
-      if (projects.length === 0) {
-        el.innerHTML = '<span style="color:rgba(255,255,255,0.4);font-size:12px;">現場を追加してください</span>';
-        return;
-      }
-      el.innerHTML = projects.map(p => `
-        <div class="tag">
-          <span>${p}</span>
-          <button class="tag-delete" onclick="deleteProject('${p}')">×</button>
-        </div>
-      `).join('');
+      el.innerHTML = projects.length === 0 ? '<span style="color:rgba(255,255,255,0.4);font-size:12px;">現場を追加してください</span>' : projects.map(p => `<div class="tag"><span>${p}</span><button class="tag-delete" onclick="deleteProject('${p}')">×</button></div>`).join('');
     }
 
-    function showModal(type) {
-      document.getElementById('modal-' + type).classList.add('show');
-      document.getElementById('input-' + type).value = '';
-    }
-
-    function hideModal(type) {
-      document.getElementById('modal-' + type).classList.remove('show');
-    }
+    function showModal(type) { document.getElementById('modal-' + type).classList.add('show'); document.getElementById('input-' + type).value = ''; }
+    function hideModal(type) { document.getElementById('modal-' + type).classList.remove('show'); }
 
     function addProject() {
       const name = document.getElementById('input-project').value.trim();
-      if (!name) { showToast('現場名を入力してください'); return; }
+      if (!name) { showToast('現場名を入力'); return; }
       if (projects.includes(name)) { showToast('同じ名前があります'); return; }
-      projects.push(name);
-      saveData();
-      renderProjects();
-      updateFilters();
-      hideModal('project');
-      showToast('追加しました');
+      projects.push(name); saveData(); renderProjects(); updateFilters(); hideModal('project'); showToast('追加しました');
     }
 
     function deleteProject(name) {
-      if (!confirm(`「${name}」を削除しますか？`)) return;
+      if (!confirm(`「${name}」を削除？`)) return;
       projects = projects.filter(p => p !== name);
-      receipts.forEach(r => { if (r.projectName === name) r.projectName = ''; });
-      saveData();
-      renderAll();
+      receipts.forEach(r => (r.items || []).forEach(i => { if (i.projectName === name) i.projectName = ''; }));
+      saveData(); renderAll();
     }
 
-    // ===== CATEGORIES =====
     function renderCategories() {
-      const expenseEl = document.getElementById('expense-categories');
-      const deductionEl = document.getElementById('deduction-categories');
-
-      expenseEl.innerHTML = categories.expense.map(c => `
-        <div class="tag">
-          <span>${c}</span>
-          <button class="tag-delete" onclick="deleteCategory('expense', '${c}')">×</button>
-        </div>
-      `).join('');
-
-      deductionEl.innerHTML = categories.deduction.map(c => `
-        <div class="tag">
-          <span>${c}</span>
-          <button class="tag-delete" onclick="deleteCategory('deduction', '${c}')">×</button>
-        </div>
-      `).join('');
+      document.getElementById('expense-categories').innerHTML = categories.expense.map(c => `<div class="tag"><span>${c}</span><button class="tag-delete" onclick="deleteCategory('expense','${c}')">×</button></div>`).join('');
+      document.getElementById('deduction-categories').innerHTML = categories.deduction.map(c => `<div class="tag"><span>${c}</span><button class="tag-delete" onclick="deleteCategory('deduction','${c}')">×</button></div>`).join('');
     }
 
     function addCategory() {
       const type = document.getElementById('add-category-type').value;
       const name = document.getElementById('add-category-name').value.trim();
-      if (!name) { showToast('科目名を入力してください'); return; }
+      if (!name) { showToast('科目名を入力'); return; }
       if (categories[type].includes(name)) { showToast('同じ名前があります'); return; }
-      categories[type].push(name);
-      saveData();
-      renderCategories();
-      updateFilters();
-      document.getElementById('add-category-name').value = '';
-      showToast('追加しました');
+      categories[type].push(name); saveData(); renderCategories(); updateFilters();
+      document.getElementById('add-category-name').value = ''; showToast('追加しました');
     }
 
     function deleteCategory(type, name) {
-      if (!confirm(`「${name}」を削除しますか？`)) return;
+      if (!confirm(`「${name}」を削除？`)) return;
       categories[type] = categories[type].filter(c => c !== name);
       receipts.forEach(r => { if (r.category === name) r.category = ''; });
-      saveData();
-      renderCategories();
-      updateFilters();
-      renderReceipts();
+      saveData(); renderAll();
     }
 
-    function getAllCategories() {
-      return [...categories.expense, ...categories.deduction];
-    }
+    function getAllCategories() { return [...categories.expense, ...categories.deduction]; }
 
-    // ===== FILTERS =====
     function updateFilters() {
-      const projectSelect = document.getElementById('filter-project');
-      const categorySelect = document.getElementById('filter-category');
-      const currentP = projectSelect.value;
-      const currentC = categorySelect.value;
-
-      projectSelect.innerHTML = '<option value="">全ての現場</option>' +
-        projects.map(p => `<option value="${p}" ${p === currentP ? 'selected' : ''}>${p}</option>`).join('');
-
-      const allCats = getAllCategories();
-      categorySelect.innerHTML = '<option value="">全ての科目</option>' +
-        allCats.map(c => `<option value="${c}" ${c === currentC ? 'selected' : ''}>${c}</option>`).join('');
+      const pSel = document.getElementById('filter-project'), cSel = document.getElementById('filter-category');
+      const curP = pSel.value, curC = cSel.value;
+      pSel.innerHTML = '<option value="">全ての現場</option>' + projects.map(p => `<option value="${p}" ${p === curP ? 'selected' : ''}>${p}</option>`).join('');
+      cSel.innerHTML = '<option value="">全ての科目</option>' + getAllCategories().map(c => `<option value="${c}" ${c === curC ? 'selected' : ''}>${c}</option>`).join('');
     }
 
-    // ===== CAMERA =====
     function handlePhotos(event) {
-      const files = event.target.files;
-      for (let i = 0; i < files.length; i++) {
+      for (let f of event.target.files) {
         const reader = new FileReader();
         reader.onload = e => { pendingPhotos.push(e.target.result); updatePendingUI(); };
-        reader.readAsDataURL(files[i]);
+        reader.readAsDataURL(f);
       }
       event.target.value = '';
     }
 
     function updatePendingUI() {
-      const photosEl = document.getElementById('pending-photos');
-      const infoEl = document.getElementById('pending-info');
-      const btn = document.getElementById('analyze-btn');
-
+      const el = document.getElementById('pending-photos'), info = document.getElementById('pending-info'), btn = document.getElementById('analyze-btn');
       if (pendingPhotos.length > 0) {
-        photosEl.innerHTML = pendingPhotos.map(p => `<img src="${p}" class="pending-photo">`).join('');
-        infoEl.textContent = `📷 ${pendingPhotos.length}枚の写真が待機中`;
-        infoEl.classList.add('show');
-        btn.classList.add('show');
-      } else {
-        photosEl.innerHTML = '';
-        infoEl.classList.remove('show');
-        btn.classList.remove('show');
-      }
+        el.innerHTML = pendingPhotos.map(p => `<img src="${p}" class="pending-photo">`).join('');
+        info.textContent = `📷 ${pendingPhotos.length}枚待機中`; info.classList.add('show'); btn.classList.add('show');
+      } else { el.innerHTML = ''; info.classList.remove('show'); btn.classList.remove('show'); }
     }
 
-    // ===== AI ANALYZE =====
     async function analyzeAll() {
-      if (!apiKey) { showToast('APIキーを設定してください'); return; }
+      if (!apiKey) { showToast('APIキーを設定'); return; }
       if (pendingPhotos.length === 0) { showToast('写真がありません'); return; }
-
       showLoading(`AI解析中... (0/${pendingPhotos.length})`);
-      let success = 0;
-      let lastError = '';
-
+      let success = 0, lastError = '';
       for (let i = 0; i < pendingPhotos.length; i++) {
         updateLoading(`AI解析中... (${i + 1}/${pendingPhotos.length})`);
         try {
@@ -626,70 +426,36 @@
           if (result) {
             result.id = 'RCP-' + Date.now() + '-' + i;
             result.photo = pendingPhotos[i];
-            result.projectName = '';
             result.category = '';
             result.createdAt = new Date().toISOString();
+            (result.items || []).forEach((item, idx) => { item.id = result.id + '-' + idx; item.projectName = ''; });
             receipts.push(result);
             success++;
           }
-        } catch (err) {
-          console.error(err);
-          lastError = err.message;
-        }
+        } catch (err) { console.error(err); lastError = err.message; }
       }
-
-      pendingPhotos = [];
-      updatePendingUI();
-      saveData();
-      renderReceipts();
-      hideLoading();
-
-      if (success > 0) {
-        showToast(`${success}件追加しました`);
-      } else if (lastError) {
-        showToast(`エラー: ${lastError}`);
-      } else {
-        showToast('解析できませんでした');
-      }
+      pendingPhotos = []; updatePendingUI(); saveData(); renderReceipts(); hideLoading();
+      if (success > 0) showToast(`${success}件追加`);
+      else if (lastError) showToast(`エラー: ${lastError}`);
+      else showToast('解析失敗');
     }
 
     async function analyzeReceipt(base64) {
       const imageData = base64.replace(/^data:image\/\w+;base64,/, '');
-      const prompt = `このレシート画像を解析して、以下のJSON形式で出力してください。必ず有効なJSONのみを出力してください。
-{
-  "date": "YYYY-MM-DD形式の日付",
-  "store": "店舗名",
-  "items": [{ "name": "商品名", "qty": 数量, "price": 単価, "total": 小計 }],
-  "subtotal": 税抜小計,
-  "tax": 消費税,
-  "total": 合計金額
-}`;
-
+      const prompt = `このレシート画像を解析して、以下のJSON形式で出力。必ず有効なJSONのみを出力。\n{"date":"YYYY-MM-DD","store":"店舗名","items":[{"name":"商品名","qty":数量,"price":単価,"total":小計}],"subtotal":税抜小計,"tax":消費税,"total":合計}`;
       const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }, { inline_data: { mime_type: 'image/jpeg', data: imageData } }] }],
-          generationConfig: { temperature: 0.1, maxOutputTokens: 2048 }
-        })
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }, { inline_data: { mime_type: 'image/jpeg', data: imageData } }] }], generationConfig: { temperature: 0.1, maxOutputTokens: 2048 } })
       });
-
       const data = await response.json();
-      
-      if (data.error) {
-        throw new Error(data.error.message || 'APIエラー');
-      }
-
+      if (data.error) throw new Error(data.error.message || 'APIエラー');
       if (data.candidates?.[0]?.content?.parts?.[0]?.text) {
-        const text = data.candidates[0].content.parts[0].text;
-        const match = text.match(/\{[\s\S]*\}/);
+        const match = data.candidates[0].content.parts[0].text.match(/\{[\s\S]*\}/);
         if (match) return JSON.parse(match[0]);
       }
-
       throw new Error('解析失敗');
     }
 
-    // ===== RECEIPTS =====
     function renderReceipts() {
       const listEl = document.getElementById('receipt-list');
       const filterP = document.getElementById('filter-project').value;
@@ -697,14 +463,13 @@
       const sortOrder = document.getElementById('filter-sort').value;
 
       let filtered = receipts.filter(r => {
-        if (filterP && r.projectName !== filterP) return false;
         if (filterC && r.category !== filterC) return false;
+        if (filterP && !(r.items || []).some(i => i.projectName === filterP)) return false;
         return true;
       });
 
       filtered.sort((a, b) => {
-        const da = new Date(a.date || a.createdAt);
-        const db = new Date(b.date || b.createdAt);
+        const da = new Date(a.date || a.createdAt), db = new Date(b.date || b.createdAt);
         return sortOrder === 'desc' ? db - da : da - db;
       });
 
@@ -717,42 +482,100 @@
 
       const allCats = getAllCategories();
 
-      listEl.innerHTML = filtered.map(r => `
-        <div class="receipt-card">
-          <div class="receipt-header">
-            <div class="receipt-date">${formatDate(r.date)}</div>
-            <div class="receipt-store">${r.store || '不明な店舗'}</div>
+      listEl.innerHTML = filtered.map(r => {
+        const isExpanded = expandedReceiptId === r.id;
+        const assigned = (r.items || []).filter(i => i.projectName).length;
+        const total = (r.items || []).length;
+
+        return `
+        <div class="receipt-card ${isExpanded ? 'expanded' : ''}" id="card-${r.id}">
+          <div class="receipt-header" onclick="toggleReceipt('${r.id}')">
+            <div class="receipt-header-row">
+              <div>
+                <div class="receipt-date">${formatDate(r.date)}</div>
+                <div class="receipt-store">${r.store || '不明'}</div>
+              </div>
+              <div style="text-align:right;">
+                <div class="receipt-total-badge">¥${(r.total || 0).toLocaleString()}</div>
+                <div class="expand-icon">▼</div>
+              </div>
+            </div>
             <div class="receipt-badges">
-              ${r.projectName ? `<span class="badge badge-project">🏠 ${r.projectName}</span>` : ''}
               ${r.category ? `<span class="badge badge-category">📂 ${r.category}</span>` : ''}
+              <span class="badge badge-items">📦 ${assigned}/${total}件割当</span>
             </div>
           </div>
-          <div class="receipt-items">
-            ${(r.items || []).slice(0, 4).map(item => `
-              <div class="receipt-item"><span>${item.name} ×${item.qty || 1}</span><span>¥${(item.total || 0).toLocaleString()}</span></div>
-            `).join('')}
-            ${(r.items?.length || 0) > 4 ? `<div class="receipt-item" style="color:#ffa500;">...他${r.items.length - 4}点</div>` : ''}
+          
+          <div class="receipt-detail">
+            <div class="item-list">
+              ${(r.items || []).map(item => `
+                <div class="item-row">
+                  <input type="checkbox" class="item-checkbox" id="chk-${item.id}" data-receipt="${r.id}" data-item="${item.id}">
+                  <div class="item-info">
+                    <div class="item-name">${item.name}</div>
+                    <div class="item-qty">×${item.qty || 1} @¥${(item.price || 0).toLocaleString()}</div>
+                  </div>
+                  <div class="item-price">¥${(item.total || 0).toLocaleString()}</div>
+                  ${item.projectName ? `<span class="item-project">${item.projectName}</span>` : ''}
+                </div>
+              `).join('')}
+            </div>
+            
+            <div class="assign-section">
+              <select class="assign-select" id="assign-select-${r.id}">
+                <option value="">現場を選択</option>
+                ${projects.map(p => `<option value="${p}">${p}</option>`).join('')}
+              </select>
+              <button class="assign-btn" onclick="assignItems('${r.id}')">✓ 反映</button>
+              <button class="clear-btn" onclick="clearItems('${r.id}')">✕ 解除</button>
+            </div>
+
+            <div class="receipt-footer">
+              <select class="receipt-select" onchange="updateReceipt('${r.id}','category',this.value)">
+                <option value="">勘定科目</option>
+                ${allCats.map(c => `<option value="${c}" ${r.category === c ? 'selected' : ''}>${c}</option>`).join('')}
+              </select>
+              <button class="delete-btn" onclick="deleteReceipt('${r.id}')">🗑️</button>
+            </div>
           </div>
-          <div class="receipt-total"><span>合計</span><span>¥${(r.total || 0).toLocaleString()}</span></div>
-          <div class="receipt-footer">
-            <select class="receipt-select" onchange="updateReceipt('${r.id}', 'projectName', this.value)">
-              <option value="">現場</option>
-              ${projects.map(p => `<option value="${p}" ${r.projectName === p ? 'selected' : ''}>${p}</option>`).join('')}
-            </select>
-            <select class="receipt-select" onchange="updateReceipt('${r.id}', 'category', this.value)">
-              <option value="">勘定科目</option>
-              ${allCats.map(c => `<option value="${c}" ${r.category === c ? 'selected' : ''}>${c}</option>`).join('')}
-            </select>
-            <button class="delete-btn" onclick="deleteReceipt('${r.id}')">🗑️</button>
-          </div>
-        </div>
-      `).join('');
+        </div>`;
+      }).join('');
+    }
+
+    function toggleReceipt(id) { expandedReceiptId = (expandedReceiptId === id) ? null : id; renderReceipts(); }
+
+    function assignItems(receiptId) {
+      const select = document.getElementById('assign-select-' + receiptId);
+      const projectName = select.value;
+      if (!projectName) { showToast('現場を選択'); return; }
+      const receipt = receipts.find(r => r.id === receiptId);
+      if (!receipt) return;
+      const checkboxes = document.querySelectorAll(`input[data-receipt="${receiptId}"]:checked`);
+      if (checkboxes.length === 0) { showToast('商品を選択'); return; }
+      checkboxes.forEach(cb => {
+        const item = receipt.items.find(i => i.id === cb.dataset.item);
+        if (item) item.projectName = projectName;
+      });
+      saveData(); renderReceipts();
+      showToast(`${checkboxes.length}件を「${projectName}」に割当`);
+    }
+
+    function clearItems(receiptId) {
+      const receipt = receipts.find(r => r.id === receiptId);
+      if (!receipt) return;
+      const checkboxes = document.querySelectorAll(`input[data-receipt="${receiptId}"]:checked`);
+      if (checkboxes.length === 0) { showToast('商品を選択'); return; }
+      checkboxes.forEach(cb => {
+        const item = receipt.items.find(i => i.id === cb.dataset.item);
+        if (item) item.projectName = '';
+      });
+      saveData(); renderReceipts();
+      showToast(`${checkboxes.length}件の割当を解除`);
     }
 
     function updateSummary(filtered) {
       document.getElementById('sum-count').textContent = `${filtered.length}件`;
       document.getElementById('sum-subtotal').textContent = `¥${filtered.reduce((s, r) => s + (r.subtotal || 0), 0).toLocaleString()}`;
-      document.getElementById('sum-tax').textContent = `¥${filtered.reduce((s, r) => s + (r.tax || 0), 0).toLocaleString()}`;
       document.getElementById('sum-total').textContent = `¥${filtered.reduce((s, r) => s + (r.total || 0), 0).toLocaleString()}`;
     }
 
@@ -763,19 +586,15 @@
       return `${date.getMonth() + 1}/${date.getDate()}（${['日','月','火','水','木','金','土'][date.getDay()]}）`;
     }
 
-    function updateReceipt(id, key, value) {
-      const r = receipts.find(x => x.id === id);
-      if (r) { r[key] = value; saveData(); renderReceipts(); }
-    }
+    function updateReceipt(id, key, value) { const r = receipts.find(x => x.id === id); if (r) { r[key] = value; saveData(); renderReceipts(); } }
 
     function deleteReceipt(id) {
       if (!confirm('削除しますか？')) return;
       receipts = receipts.filter(r => r.id !== id);
-      saveData();
-      renderReceipts();
+      if (expandedReceiptId === id) expandedReceiptId = null;
+      saveData(); renderReceipts();
     }
 
-    // ===== EXPORT =====
     function updateExportSelects() {
       const opts = projects.map(p => `<option value="${p}">${p}</option>`).join('');
       document.getElementById('export-project').innerHTML = '<option value="">現場を選択...</option>' + opts;
@@ -787,71 +606,61 @@
       const preview = document.getElementById('export-preview');
       if (!project) { preview.style.display = 'none'; return; }
 
-      const list = receipts.filter(r => r.projectName === project);
-      const total = list.reduce((s, r) => s + (r.total || 0), 0);
-      const tax = list.reduce((s, r) => s + (r.tax || 0), 0);
+      const items = [];
+      receipts.forEach(r => (r.items || []).forEach(item => { if (item.projectName === project) items.push({ name: item.name, qty: item.qty || 1, price: item.price || 0, total: item.total || 0 }); }));
 
+      if (items.length === 0) {
+        preview.style.display = 'block';
+        preview.innerHTML = '<div style="text-align:center;color:rgba(255,255,255,0.5);">この現場に割り当てられた商品はありません</div>';
+        return;
+      }
+
+      const total = items.reduce((s, i) => s + i.total, 0);
       preview.style.display = 'block';
-      preview.innerHTML = `<strong>${project}</strong><br>レシート: ${list.length}件<br>材料費: ¥${(total - tax).toLocaleString()}<br>消費税: ¥${tax.toLocaleString()}<br><strong>合計: ¥${total.toLocaleString()}</strong>`;
+      preview.innerHTML = `
+        <div style="margin-bottom:10px;font-weight:bold;">📦 ${project} - ${items.length}件</div>
+        ${items.map(i => `<div class="export-item"><span class="export-item-name">${i.name} ×${i.qty}</span><span class="export-item-price">¥${i.total.toLocaleString()}</span></div>`).join('')}
+        <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.2);font-weight:bold;display:flex;justify-content:space-between;">
+          <span>合計（税込）</span><span style="color:#00d4ff;">¥${total.toLocaleString()}</span>
+        </div>
+        <div style="margin-top:5px;font-size:11px;color:#ffa500;">※仕切り価格です。売り値に変更してください。</div>`;
     }
 
-    function copyForInvoice() {
+    function copyItemsForInvoice() {
       const project = document.getElementById('export-project').value;
-      if (!project) { showToast('現場を選択してください'); return; }
-
-      const list = receipts.filter(r => r.projectName === project);
-      const total = list.reduce((s, r) => s + (r.total || 0), 0);
-      const text = `${project}\n材料費一式: ¥${total.toLocaleString()}`;
-
+      if (!project) { showToast('現場を選択'); return; }
+      const items = [];
+      receipts.forEach(r => (r.items || []).forEach(item => { if (item.projectName === project) items.push({ name: item.name, qty: item.qty || 1, total: item.total || 0 }); }));
+      if (items.length === 0) { showToast('商品がありません'); return; }
+      const lines = items.map(i => `${i.name}\t${i.qty}\t${i.total}`);
+      const total = items.reduce((s, i) => s + i.total, 0);
+      const text = `【${project}】材料一覧（仕切り価格）\n商品名\t数量\t金額\n${lines.join('\n')}\n---\n合計\t\t${total}`;
       navigator.clipboard.writeText(text).then(() => showToast('コピーしました')).catch(() => prompt('コピー:', text));
     }
 
     function downloadLedgerJSON() {
       const project = document.getElementById('export-ledger-project').value;
-      const filtered = project ? receipts.filter(r => r.projectName === project) : receipts;
-
+      const filtered = project ? receipts.filter(r => (r.items || []).some(i => i.projectName === project)) : receipts;
       if (filtered.length === 0) { showToast('データがありません'); return; }
-
       const entries = [];
-      filtered.forEach(r => {
-        (r.items || []).forEach(item => {
-          entries.push({
-            date: r.date, store: r.store, projectName: r.projectName || '', category: r.category || '',
-            itemName: item.name, qty: item.qty || 1, price: item.price || 0, total: item.total || 0
-          });
-        });
-      });
-
-      const data = {
-        type: 'ledger_entries',
-        projectName: project || '全現場',
-        entries,
-        summary: { receiptCount: filtered.length, entryCount: entries.length, total: filtered.reduce((s, r) => s + (r.total || 0), 0) },
-        exportedAt: new Date().toISOString()
-      };
-
+      filtered.forEach(r => (r.items || []).forEach(item => {
+        if (!project || item.projectName === project) entries.push({ date: r.date, store: r.store, projectName: item.projectName || '', category: r.category || '', itemName: item.name, qty: item.qty || 1, price: item.price || 0, total: item.total || 0 });
+      }));
+      const data = { type: 'ledger_entries', projectName: project || '全現場', entries, summary: { count: entries.length, total: entries.reduce((s, e) => s + e.total, 0) }, exportedAt: new Date().toISOString() };
       const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = `ledger_${project || 'all'}_${new Date().toISOString().slice(0, 10)}.json`;
-      a.click();
-      showToast('ダウンロードしました');
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `ledger_${project || 'all'}_${new Date().toISOString().slice(0, 10)}.json`; a.click();
+      showToast('ダウンロード完了');
     }
 
-    // ===== BACKUP =====
     function exportBackup() {
-      const data = { version: '3.0', exported: new Date().toISOString(), receipts, projects, categories };
+      const data = { version: '3.1', exported: new Date().toISOString(), receipts, projects, categories };
       const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = `receipt_master_${new Date().toISOString().slice(0, 10)}.json`;
-      a.click();
-      showToast('バックアップ保存しました');
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `receipt_master_${new Date().toISOString().slice(0, 10)}.json`; a.click();
+      showToast('バックアップ保存');
     }
 
     function importBackup(event) {
-      const file = event.target.files[0];
-      if (!file) return;
+      const file = event.target.files[0]; if (!file) return;
       const reader = new FileReader();
       reader.onload = e => {
         try {
@@ -859,33 +668,17 @@
           if (data.receipts) receipts = data.receipts;
           if (data.projects) projects = data.projects;
           if (data.categories) categories = data.categories;
-          saveData();
-          renderAll();
-          showToast('復元しました');
+          saveData(); renderAll(); showToast('復元しました');
         } catch (err) { showToast('読み込み失敗'); }
       };
-      reader.readAsText(file);
-      event.target.value = '';
+      reader.readAsText(file); event.target.value = '';
     }
 
-    // ===== UI HELPERS =====
     function showLoading(text) { document.getElementById('loading-text').textContent = text; document.getElementById('loading').classList.add('show'); }
     function updateLoading(text) { document.getElementById('loading-text').textContent = text; }
     function hideLoading() { document.getElementById('loading').classList.remove('show'); }
-    function showToast(msg) {
-      const t = document.getElementById('toast');
-      t.textContent = msg;
-      t.classList.remove('show');
-      void t.offsetWidth;
-      t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 2500);
-    }
+    function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.remove('show'); void t.offsetWidth; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2500); }
   </script>
-
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./service-worker.js').catch(err => console.log('SW error:', err));
-    }
-  </script>
+  <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('./service-worker.js').catch(e => console.log('SW error:', e));</script>
 </body>
 </html>
