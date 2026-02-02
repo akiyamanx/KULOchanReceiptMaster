@@ -1,4 +1,4 @@
-const CACHE_NAME = 'receipt-master-v4';
+const CACHE_NAME = 'receipt-master-v5';
 const urlsToCache = [
   './',
   './index.html',
@@ -22,5 +22,17 @@ self.addEventListener('fetch', event => {
         }
         return fetch(event.request);
       })
+  );
+});
+
+// 古いキャッシュを削除
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.filter(name => name !== CACHE_NAME)
+          .map(name => caches.delete(name))
+      );
+    })
   );
 });

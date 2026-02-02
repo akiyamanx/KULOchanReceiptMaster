@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="theme-color" content="#00d4ff">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="manifest" href="./manifest.json">
   <title>レシートマスター - COCOMI</title>
   
@@ -23,10 +22,7 @@
       padding: 20px;
     }
     
-    .logo {
-      font-size: 60px;
-      margin-bottom: 20px;
-    }
+    .logo { font-size: 60px; margin-bottom: 20px; }
     
     .title {
       font-size: 28px;
@@ -50,7 +46,7 @@
       flex-direction: column;
       gap: 15px;
       width: 100%;
-      max-width: 300px;
+      max-width: 320px;
     }
     
     .menu-btn {
@@ -72,13 +68,9 @@
       transform: translateY(-2px);
     }
     
-    .menu-icon {
-      font-size: 30px;
-    }
+    .menu-icon { font-size: 30px; }
     
-    .menu-text {
-      flex: 1;
-    }
+    .menu-text { flex: 1; }
     
     .menu-title {
       font-size: 16px;
@@ -96,16 +88,20 @@
       color: rgba(255,255,255,0.3);
     }
     
+    .version {
+      margin-top: 30px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+    }
+    
     .footer {
-      margin-top: 40px;
+      margin-top: 20px;
       font-size: 11px;
       color: rgba(255,255,255,0.3);
       text-align: center;
     }
     
-    .footer .heart {
-      color: #ff69b4;
-    }
+    .footer .heart { color: #ff69b4; }
   </style>
 </head>
 <body>
@@ -119,7 +115,7 @@
       <div class="menu-icon">📸</div>
       <div class="menu-text">
         <div class="menu-title">レシートマスター</div>
-        <div class="menu-desc">撮影・AI解析・現場管理</div>
+        <div class="menu-desc">撮影・AI解析・勘定科目・現場管理</div>
       </div>
       <div class="menu-arrow">›</div>
     </a>
@@ -128,11 +124,13 @@
       <div class="menu-icon">📒</div>
       <div class="menu-text">
         <div class="menu-title">出納帳</div>
-        <div class="menu-desc">経費管理・現場別集計</div>
+        <div class="menu-desc">経費管理・現場別集計・CSV出力</div>
       </div>
       <div class="menu-arrow">›</div>
     </a>
   </div>
+  
+  <div class="version">v3.0</div>
   
   <div class="footer">
     COCOMI Sisters <span class="heart">♡</span><br>
@@ -140,7 +138,6 @@
   </div>
 
   <script>
-    // Service Worker登録
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./service-worker.js')
         .then(reg => console.log('SW registered'))

@@ -1,7 +1,7 @@
 {
   "name": "レシートマスター - COCOMI",
   "short_name": "レシートマスター",
-  "description": "レシート撮影・AI解析・出納帳連携アプリ",
+  "description": "レシート撮影・AI解析・勘定科目管理・出納帳連携アプリ",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#1a1a2e",
